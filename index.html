@@ -84,67 +84,89 @@
         <a href="https://www.tiktok.com/@realscripts_q" target="_blank" class="tiktok-link">TikTok</a>
         
         <h2>Scripts</h2>
+        <!-- First Script Section -->
         <div class="script-box">
             <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank">here</a></p>
-            <button id="subscribe-button" onclick="startTimer()">I've Subscribed</button>
-            <p id="timer-text" style="display: none;">Please wait <span id="time-left">20</span> seconds...</p>
-            <textarea id="script-content" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
-            <button id="copy-button" onclick="copyScript()" style="display: none;">Copy Script</button>
+            <button id="subscribe-button" onclick="startTimer(1)">I've Subscribed</button>
+            <p id="timer-text-1" style="display: none;">Please wait <span id="time-left-1">20</span> seconds...</p>
+            <textarea id="script-content-1" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
+            <button id="copy-button-1" onclick="copyScript(1)" style="display: none;">Copy Script</button>
             <div class="views">
                 <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" alt="eye icon">
-                <span id="view-count">0</span> Views
+                <span id="view-count-1">0</span> Views
                 <div class="likes">
                     <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="like icon" width="16">
-                    <span id="like-count">0</span> Likes
+                    <span id="like-count-1">0</span> Likes
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Script Section -->
+        <div class="script-box">
+            <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank">here</a></p>
+            <button id="subscribe-button-2" onclick="startTimer(2)">I've Subscribed</button>
+            <p id="timer-text-2" style="display: none;">Please wait <span id="time-left-2">20</span> seconds...</p>
+            <textarea id="script-content-2" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
+            <button id="copy-button-2" onclick="copyScript(2)" style="display: none;">Copy Script</button>
+            <div class="views">
+                <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" alt="eye icon">
+                <span id="view-count-2">0</span> Views
+                <div class="likes">
+                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="like icon" width="16">
+                    <span id="like-count-2">0</span> Likes
                 </div>
             </div>
         </div>
     </div>
     <script>
         let countdown;
-        function startTimer() {
+
+        function startTimer(scriptNumber) {
             let timeLeft = 20;
-            document.getElementById("subscribe-button").style.display = "none";
-            document.getElementById("timer-text").style.display = "block";
+            document.getElementById("subscribe-button" + (scriptNumber === 1 ? "" : "-2")).style.display = "none";
+            document.getElementById("timer-text-" + scriptNumber).style.display = "block";
             
             countdown = setInterval(() => {
                 timeLeft--;
-                document.getElementById("time-left").textContent = timeLeft;
+                document.getElementById("time-left-" + scriptNumber).textContent = timeLeft;
                 
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
-                    document.getElementById("timer-text").style.display = "none";
-                    document.getElementById("script-content").style.display = "block";
-                    document.getElementById("copy-button").style.display = "block";
-                    incrementViewCount();
+                    document.getElementById("timer-text-" + scriptNumber).style.display = "none";
+                    document.getElementById("script-content-" + scriptNumber).style.display = "block";
+                    document.getElementById("copy-button-" + scriptNumber).style.display = "block";
+                    incrementViewCount(scriptNumber);
                 }
             }, 1000);
         }
 
-        function copyScript() {
-            let scriptContent = document.getElementById("script-content");
+        function copyScript(scriptNumber) {
+            let scriptContent = document.getElementById("script-content-" + scriptNumber);
             scriptContent.select();
             document.execCommand("copy");
             alert("Script copied!");
         }
 
-        function incrementViewCount() {
-            let viewed = localStorage.getItem("scriptViewed");
+        function incrementViewCount(scriptNumber) {
+            let viewed = localStorage.getItem("script" + scriptNumber + "Viewed");
             if (!viewed) {
-                let views = localStorage.getItem("scriptViews") || 0;
+                let views = localStorage.getItem("script" + scriptNumber + "Views") || 0;
                 views = parseInt(views) + 1;
-                localStorage.setItem("scriptViews", views);
-                localStorage.setItem("scriptViewed", "true");
-                document.getElementById("view-count").textContent = views;
+                localStorage.setItem("script" + scriptNumber + "Views", views);
+                localStorage.setItem("script" + scriptNumber + "Viewed", "true");
+                document.getElementById("view-count-" + scriptNumber).textContent = views;
             }
         }
 
-        function loadViewCount() {
-            let views = localStorage.getItem("scriptViews") || 0;
-            document.getElementById("view-count").textContent = views;
+        function loadViewCount(scriptNumber) {
+            let views = localStorage.getItem("script" + scriptNumber + "Views") || 0;
+            document.getElementById("view-count-" + scriptNumber).textContent = views;
         }
         
-        window.onload = loadViewCount;
+        window.onload = function() {
+            loadViewCount(1);
+            loadViewCount(2);
+        };
     </script>
 </body>
 </html>
