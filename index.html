@@ -119,10 +119,14 @@
         }
 
         function incrementViewCount() {
-            let views = localStorage.getItem("scriptViews") || 0;
-            views = parseInt(views) + 1;
-            localStorage.setItem("scriptViews", views);
-            document.getElementById("view-count").textContent = views;
+            let viewed = localStorage.getItem("scriptViewed");
+            if (!viewed) {
+                let views = localStorage.getItem("scriptViews") || 0;
+                views = parseInt(views) + 1;
+                localStorage.setItem("scriptViews", views);
+                localStorage.setItem("scriptViewed", "true");
+                document.getElementById("view-count").textContent = views;
+            }
         }
 
         function loadViewCount() {
