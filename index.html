@@ -23,110 +23,58 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             flex-grow: 1;
         }
-        .sidebar {
-            width: 200px;
-            background: #1e1e1e;
+        .script-box {
+            margin-bottom: 20px;
             padding: 15px;
+            background: #222;
             border-radius: 10px;
-            margin-right: 20px;
-            text-align: left;
         }
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            background: #ff0000;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .sidebar a:hover {
-            background: #cc0000;
-        }
-        .support-button {
-            display: block;
-            background: #ffcc00;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .views {
-            margin-top: 10px;
-            font-size: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .views img {
-            width: 16px;
-            margin-right: 5px;
-        }
-        .likes {
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
+        .disabled {
+            background: gray !important;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Executer</h2>
-        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta</a>
-        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
-    </div>
     <div class="container">
         <h1>My Socials</h1>
-        <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" class="social-link">YouTube</a>
-        <a href="https://www.tiktok.com/@realscripts_q" target="_blank" class="tiktok-link">TikTok</a>
         
         <h2>Scripts</h2>
+
         <!-- First Script Section -->
         <div class="script-box">
-            <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank">here</a></p>
-            <button id="subscribe-button" onclick="startTimer(1)">I've Subscribed</button>
+            <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" onclick="enableButton(1)">here</a></p>
+            <button id="subscribe-button-1" onclick="startTimer(1)" class="disabled" disabled>I've Subscribed</button>
             <p id="timer-text-1" style="display: none;">Please wait <span id="time-left-1">20</span> seconds...</p>
             <textarea id="script-content-1" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
             <button id="copy-button-1" onclick="copyScript(1)" style="display: none;">Copy Script</button>
-            <div class="views">
-                <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" alt="eye icon">
-                <span id="view-count-1">0</span> Views
-                <div class="likes">
-                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="like icon" width="16">
-                    <span id="like-count-1">0</span> Likes
-                </div>
-            </div>
         </div>
 
         <!-- Second Script Section -->
         <div class="script-box">
-            <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank">here</a></p>
-            <button id="subscribe-button-2" onclick="startTimer(2)">I've Subscribed</button>
+            <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" onclick="enableButton(2)">here</a></p>
+            <button id="subscribe-button-2" onclick="startTimer(2)" class="disabled" disabled>I've Subscribed</button>
             <p id="timer-text-2" style="display: none;">Please wait <span id="time-left-2">20</span> seconds...</p>
             <textarea id="script-content-2" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
             <button id="copy-button-2" onclick="copyScript(2)" style="display: none;">Copy Script</button>
-            <div class="views">
-                <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" alt="eye icon">
-                <span id="view-count-2">0</span> Views
-                <div class="likes">
-                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="like icon" width="16">
-                    <span id="like-count-2">0</span> Likes
-                </div>
-            </div>
         </div>
     </div>
+
     <script>
-        let countdown;
+        function enableButton(scriptNumber) {
+            setTimeout(() => { 
+                let button = document.getElementById("subscribe-button-" + scriptNumber);
+                button.disabled = false;
+                button.classList.remove("disabled");
+            }, 1000); // Delay to ensure the user actually clicks the link
+        }
 
         function startTimer(scriptNumber) {
             let timeLeft = 20;
-            document.getElementById("subscribe-button" + (scriptNumber === 1 ? "" : "-2")).style.display = "none";
+            document.getElementById("subscribe-button-" + scriptNumber).style.display = "none";
             document.getElementById("timer-text-" + scriptNumber).style.display = "block";
             
-            countdown = setInterval(() => {
+            let countdown = setInterval(() => {
                 timeLeft--;
                 document.getElementById("time-left-" + scriptNumber).textContent = timeLeft;
                 
@@ -135,7 +83,6 @@
                     document.getElementById("timer-text-" + scriptNumber).style.display = "none";
                     document.getElementById("script-content-" + scriptNumber).style.display = "block";
                     document.getElementById("copy-button-" + scriptNumber).style.display = "block";
-                    incrementViewCount(scriptNumber);
                 }
             }, 1000);
         }
@@ -146,27 +93,6 @@
             document.execCommand("copy");
             alert("Script copied!");
         }
-
-        function incrementViewCount(scriptNumber) {
-            let viewed = localStorage.getItem("script" + scriptNumber + "Viewed");
-            if (!viewed) {
-                let views = localStorage.getItem("script" + scriptNumber + "Views") || 0;
-                views = parseInt(views) + 1;
-                localStorage.setItem("script" + scriptNumber + "Views", views);
-                localStorage.setItem("script" + scriptNumber + "Viewed", "true");
-                document.getElementById("view-count-" + scriptNumber).textContent = views;
-            }
-        }
-
-        function loadViewCount(scriptNumber) {
-            let views = localStorage.getItem("script" + scriptNumber + "Views") || 0;
-            document.getElementById("view-count-" + scriptNumber).textContent = views;
-        }
-        
-        window.onload = function() {
-            loadViewCount(1);
-            loadViewCount(2);
-        };
     </script>
 </body>
 </html>
