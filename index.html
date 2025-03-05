@@ -28,6 +28,15 @@
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .tiktok-link {
+            display: inline-block;
+            background: #25F4EE;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
             margin-bottom: 20px;
         }
         .script-box {
@@ -61,11 +70,12 @@
     <div class="container">
         <h1>My Socials</h1>
         <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" class="social-link">YouTube</a>
+        <a href="https://www.tiktok.com/@realscripts_q" target="_blank" class="tiktok-link">TikTok</a>
         
         <h2>Scripts</h2>
         <div class="script-box">
-            <p class="script-name">Dead Rails Script 2025 | Auto Drive, Item Grab, Hitbox & More (Mobile & PC)</p>
-            <button id="subscribe-button" onclick="startTimer()">Subscribe to My Channel</button>
+            <p><strong>Step 1:</strong> Subscribe to my channel <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank">here</a></p>
+            <button id="subscribe-button" onclick="startTimer()">I've Subscribed</button>
             <p id="timer-text" style="display: none;">Please wait <span id="time-left">20</span> seconds...</p>
             <textarea id="script-content" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
             <button id="copy-button" onclick="copyScript()" style="display: none;">Copy Script</button>
@@ -74,8 +84,6 @@
     <script>
         let countdown;
         function startTimer() {
-            window.open("https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA", "_blank");
-            
             let timeLeft = 20;
             document.getElementById("subscribe-button").style.display = "none";
             document.getElementById("timer-text").style.display = "block";
