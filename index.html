@@ -21,7 +21,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
-        .social-link {
+        .social-link, .tiktok-link {
             display: inline-block;
             background: #ff0000;
             color: white;
@@ -31,13 +31,7 @@
             margin-bottom: 10px;
         }
         .tiktok-link {
-            display: inline-block;
             background: #25F4EE;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
         }
         .script-box {
             background: #222;
@@ -64,6 +58,17 @@
         button:hover {
             background: #00cc00;
         }
+        .views {
+            margin-top: 10px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .views img {
+            width: 20px;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -79,6 +84,10 @@
             <p id="timer-text" style="display: none;">Please wait <span id="time-left">20</span> seconds...</p>
             <textarea id="script-content" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
             <button id="copy-button" onclick="copyScript()" style="display: none;">Copy Script</button>
+            <div class="views">
+                <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" alt="eye icon">
+                <span id="view-count">0</span> Views
+            </div>
         </div>
     </div>
     <script>
@@ -97,6 +106,7 @@
                     document.getElementById("timer-text").style.display = "none";
                     document.getElementById("script-content").style.display = "block";
                     document.getElementById("copy-button").style.display = "block";
+                    incrementViewCount();
                 }
             }, 1000);
         }
@@ -107,6 +117,20 @@
             document.execCommand("copy");
             alert("Script copied!");
         }
+
+        function incrementViewCount() {
+            let views = localStorage.getItem("scriptViews") || 0;
+            views = parseInt(views) + 1;
+            localStorage.setItem("scriptViews", views);
+            document.getElementById("view-count").textContent = views;
+        }
+
+        function loadViewCount() {
+            let views = localStorage.getItem("scriptViews") || 0;
+            document.getElementById("view-count").textContent = views;
+        }
+        
+        window.onload = loadViewCount;
     </script>
 </body>
 </html>
