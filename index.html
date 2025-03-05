@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Socials & Scripts</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .social-link {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .script-box {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            background: #00ff00;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Socials</h1>
+        <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" class="social-link">YouTube</a>
+        
+        <h2>Scripts</h2>
+        <div class="script-box">
+            <p class="script-name">Dead Rails Script 2025 | Auto Drive, Item Grab, Hitbox & More (Mobile & PC)</p>
+            <button id="subscribe-button" onclick="startTimer()">Subscribe to My Channel</button>
+            <p id="timer-text" style="display: none;">Please wait <span id="time-left">20</span> seconds...</p>
+            <textarea id="script-content" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
+            <button id="copy-button" onclick="copyScript()" style="display: none;">Copy Script</button>
+        </div>
+    </div>
+    <script>
+        let countdown;
+        function startTimer() {
+            window.open("https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA", "_blank");
+            
+            let timeLeft = 20;
+            document.getElementById("subscribe-button").style.display = "none";
+            document.getElementById("timer-text").style.display = "block";
+            
+            countdown = setInterval(() => {
+                timeLeft--;
+                document.getElementById("time-left").textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById("timer-text").style.display = "none";
+                    document.getElementById("script-content").style.display = "block";
+                    document.getElementById("copy-button").style.display = "block";
+                }
+            }, 1000);
+        }
+
+        function copyScript() {
+            let scriptContent = document.getElementById("script-content");
+            scriptContent.select();
+            document.execCommand("copy");
+            alert("Script copied!");
+        }
+    </script>
+</body>
+</html>
