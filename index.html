@@ -45,22 +45,38 @@
             background: #cc0000;
         }
         .support-button {
-            display: inline-block;
+            display: block;
             background: #ffcc00;
             color: black;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             margin-top: 10px;
+            text-align: center;
+        }
+        .views {
+            margin-top: 10px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .views img {
+            width: 16px;
+            margin-right: 5px;
+        }
+        .likes {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>Executer</h2>
-        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta Executor</a>
-        <h2>Support Me</h2>
-        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Support Me</a>
+        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta with Support Me</a>
+        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
     </div>
     <div class="container">
         <h1>My Socials</h1>
@@ -77,6 +93,10 @@
             <div class="views">
                 <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" alt="eye icon">
                 <span id="view-count">0</span> Views
+                <div class="likes">
+                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="like icon" width="16">
+                    <span id="like-count">0</span> Likes
+                </div>
             </div>
         </div>
     </div>
