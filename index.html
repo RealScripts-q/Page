@@ -100,40 +100,5 @@
             <button id="copy-button-2" onclick="copyScript(2)" style="display: none;">Copy Script</button>
         </div>
     </div>
-
-    <script>
-        function enableButton(scriptNumber) {
-            setTimeout(() => { 
-                let button = document.getElementById("subscribe-button-" + scriptNumber);
-                button.disabled = false;
-                button.classList.remove("disabled");
-            }, 1000);
-        }
-
-        function startTimer(scriptNumber) {
-            let timeLeft = 20;
-            document.getElementById("subscribe-button-" + scriptNumber).style.display = "none";
-            document.getElementById("timer-text-" + scriptNumber).style.display = "block";
-            
-            let countdown = setInterval(() => {
-                timeLeft--;
-                document.getElementById("time-left-" + scriptNumber).textContent = timeLeft;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    document.getElementById("timer-text-" + scriptNumber).style.display = "none";
-                    document.getElementById("script-content-" + scriptNumber).style.display = "block";
-                    document.getElementById("copy-button-" + scriptNumber).style.display = "block";
-                }
-            }, 1000);
-        }
-
-        function copyScript(scriptNumber) {
-            let scriptContent = document.getElementById("script-content-" + scriptNumber);
-            scriptContent.select();
-            document.execCommand("copy");
-            alert("Script copied!");
-        }
-    </script>
 </body>
 </html>
