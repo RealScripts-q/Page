@@ -54,6 +54,9 @@
         <h2>My Executer I Use</h2>
         <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta</a>
         <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
+        <h2>Videos</h2>
+        <iframe width="100%" height="150" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="150" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div class="container">
@@ -63,8 +66,8 @@
         <div class="script-box">
             <h3>Dead Rails Script Pastebin | Bring Items, Auto Drive, Auto Collect, Hitbox & More (No Key)</h3>
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="#" onclick="completeStep(1, 1)">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="#" onclick="startVideoTimer(1, 45)">Watch Video</a></p>
+            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank" onclick="completeStep(1, 1)">Subscribe</a></p>
+            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank" onclick="startVideoTimer(1, 45)">Watch Video</a></p>
             <p id="timer-text-1" class="timer-text">Please wait <span id="time-left-1">45</span> seconds...</p>
             <textarea id="script-content-1" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/main/Loader'))()</textarea>
             <button id="copy-button-1" onclick="copyScript(1)" style="display: none;">Copy Script</button>
@@ -73,63 +76,12 @@
         <div class="script-box">
             <h3>[New] Dead Rails Script Auto Collect Bonds 💰</h3>
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="#" onclick="completeStep(2, 1)">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="#" onclick="startVideoTimer(2, 45)">Watch Video</a></p>
+            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank" onclick="completeStep(2, 1)">Subscribe</a></p>
+            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=VBSrpL5NVuI" target="_blank" onclick="startVideoTimer(2, 45)">Watch Video</a></p>
             <p id="timer-text-2" class="timer-text">Please wait <span id="time-left-2">45</span> seconds...</p>
             <textarea id="script-content-2" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/main/Loader'))()</textarea>
             <button id="copy-button-2" onclick="copyScript(2)" style="display: none;">Copy Script</button>
         </div>
     </div>
-
-    <script>
-        let stepsCompleted = {};
-        let videoStartTime = localStorage.getItem("videoStartTime") || null;
-
-        function completeStep(scriptNumber, step) {
-            if (!stepsCompleted[scriptNumber]) {
-                stepsCompleted[scriptNumber] = { step1: false, step2: false };
-            }
-            stepsCompleted[scriptNumber][`step${step}`] = true;
-            checkSteps(scriptNumber);
-        }
-
-        function startVideoTimer(scriptNumber, duration) {
-            videoStartTime = Date.now();
-            localStorage.setItem("videoStartTime", videoStartTime);
-            alert("Please watch the video for " + duration + " seconds.");
-        }
-
-        function checkSteps(scriptNumber) {
-            let elapsedTime = (Date.now() - videoStartTime) / 1000;
-            if (stepsCompleted[scriptNumber].step1 && stepsCompleted[scriptNumber].step2) {
-                if (elapsedTime < 45) {
-                    alert("You must watch the video for 45 seconds before proceeding.");
-                } else {
-                    startCountdown(scriptNumber, 10);
-                }
-            }
-        }
-
-        function startCountdown(scriptNumber, duration) {
-            document.getElementById("timer-text-" + scriptNumber).style.display = "block";
-            let timeLeft = duration;
-            let countdown = setInterval(() => {
-                document.getElementById("time-left-" + scriptNumber).textContent = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    document.getElementById("script-content-" + scriptNumber).style.display = "block";
-                    document.getElementById("copy-button-" + scriptNumber).style.display = "block";
-                }
-                timeLeft--;
-            }, 1000);
-        }
-
-        function copyScript(scriptNumber) {
-            let scriptContent = document.getElementById("script-content-" + scriptNumber);
-            scriptContent.select();
-            document.execCommand("copy");
-            alert("Script copied!");
-        }
-    </script>
 </body>
 </html>
