@@ -23,100 +23,62 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             flex-grow: 1;
         }
-        .sidebar {
-            width: 200px;
-            background: #1e1e1e;
-            padding: 15px;
-            border-radius: 10px;
-            margin-right: 20px;
-            text-align: left;
-        }
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            background: #ff0000;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .sidebar a:hover {
-            background: #cc0000;
-        }
-        .support-button {
-            display: block;
-            background: #ffcc00;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
         .script-box {
             margin-bottom: 20px;
             padding: 15px;
             background: #222;
             border-radius: 10px;
         }
-        .disabled {
-            background: gray !important;
-            cursor: not-allowed;
+        .timer-text {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>My Executer I Use</h2>
-        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta</a>
-        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
-    </div>
-    
     <div class="container">
         <h1>My Socials</h1>
-
         <h2>Scripts</h2>
-
-        <!-- First Script Section -->
+        
         <div class="script-box">
-            <h3>Dead Rails Script Pastebin | Bring Items, Auto Drive, Auto Collect, Hitbox & More (No Key)</h3>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" onclick="startTimer(1)">Subscribe to my channel here</a></p>
-            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank" onclick="startVideoTimer(1, 45)">Watch the video for 45 seconds</a></p>
-            <p id="timer-text-1" style="display: none;">Please wait <span id="time-left-1">20</span> seconds...</p>
-            <textarea id="script-content-1" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
+            <h3>Example Script</h3>
+            <p><strong>Step 1:</strong> <a href="#" onclick="completeStep(1, 1)">Subscribe</a></p>
+            <p><strong>Step 2:</strong> <a href="#" onclick="startVideoTimer(1, 10)">Watch Video</a></p>
+            <p id="timer-text-1" class="timer-text">Please wait <span id="time-left-1">10</span> seconds...</p>
+            <textarea id="script-content-1" readonly style="display: none;">Example Script Code</textarea>
             <button id="copy-button-1" onclick="copyScript(1)" style="display: none;">Copy Script</button>
         </div>
-
-        <!-- Second Script Section -->
-        <div class="script-box">
-            <h3>[New] Dead Rails Script Auto Collect Bonds 💰</h3>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/channel/UCKCKRcJVVdLSaZoKQU-CuVA" target="_blank" onclick="startTimer(2)">Subscribe to my channel here</a></p>
-            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=VBSrpL5NVuI" target="_blank" onclick="startVideoTimer(2, 45)">Watch the video for 45 seconds</a></p>
-            <p id="timer-text-2" style="display: none;">Please wait <span id="time-left-2">20</span> seconds...</p>
-            <textarea id="script-content-2" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/heads/main/Loader'))()</textarea>
-            <button id="copy-button-2" onclick="copyScript(2)" style="display: none;">Copy Script</button>
-        </div>
     </div>
+
     <script>
-        function startTimer(scriptNumber) {
-            setTimeout(() => {
-                document.getElementById("timer-text-" + scriptNumber).style.display = "block";
-            }, 1000);
+        let stepsCompleted = {};
+
+        function completeStep(scriptNumber, step) {
+            if (!stepsCompleted[scriptNumber]) {
+                stepsCompleted[scriptNumber] = { step1: false, step2: false };
+            }
+            stepsCompleted[scriptNumber][`step${step}`] = true;
+            checkSteps(scriptNumber);
         }
 
         function startVideoTimer(scriptNumber, duration) {
+            completeStep(scriptNumber, 2);
             let timeLeft = duration;
+            document.getElementById("timer-text-" + scriptNumber).style.display = "block";
             let countdown = setInterval(() => {
-                timeLeft--;
+                document.getElementById("time-left-" + scriptNumber).textContent = timeLeft;
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     document.getElementById("script-content-" + scriptNumber).style.display = "block";
                     document.getElementById("copy-button-" + scriptNumber).style.display = "block";
                 }
+                timeLeft--;
             }, 1000);
+        }
+
+        function checkSteps(scriptNumber) {
+            if (stepsCompleted[scriptNumber].step1 && stepsCompleted[scriptNumber].step2) {
+                document.getElementById("timer-text-" + scriptNumber).style.display = "block";
+            }
         }
 
         function copyScript(scriptNumber) {
