@@ -34,6 +34,49 @@
         .paypal-button:hover {
             background-color: #e0a800;
         }
+        .scripts-section {
+            margin-top: 30px;
+            display: none; /* Initially hidden */
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .script-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .script-content {
+            background-color: #333;
+            color: #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+        }
+        .copy-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .copy-button:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            background-color: #f44336;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            display: none; /* Hidden initially */
+        }
     </style>
 </head>
 <body>
@@ -43,5 +86,54 @@
         <a href="https://www.paypal.com/paypalme/realgyjs/5GBP?email=realgyjs@gmail.com" target="_blank" class="paypal-button">Pay with PayPal</a>
         <p>After completing the payment, you will receive the script immediately.</p>
     </div>
+
+    <!-- Error message for failed payment -->
+    <div class="error-message" id="errorMessage">
+        Payment failed or canceled. Please try again.
+    </div>
+
+    <!-- Section to show the script after payment confirmation -->
+    <div class="scripts-section" id="scriptsSection">
+        <div class="script-title">Dead Rails Script Pastebin | Bring Items, Auto Drive, Auto Collect, Hitbox & More (No Key)</div>
+        <div class="script-content" id="scriptContent1">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/main/Loader'))()</div>
+        <button class="copy-button" onclick="copyScript('scriptContent1')">Copy Script</button>
+        
+        <div class="script-title">[New] Dead Rails Script Auto Collect Bonds 💰</div>
+        <div class="script-content" id="scriptContent2">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/main/Loader'))()</div>
+        <button class="copy-button" onclick="copyScript('scriptContent2')">Copy Script</button>
+    </div>
+
+    <script>
+        // Function to display the scripts after a successful payment
+        function showScripts() {
+            document.getElementById('scriptsSection').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none'; // Hide error message if payment is successful
+        }
+
+        // Function to show the error message in case of a failed payment
+        function showError() {
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('scriptsSection').style.display = 'none'; // Hide scripts if payment failed
+        }
+
+        // Copy script content to clipboard
+        function copyScript(scriptId) {
+            const scriptContent = document.getElementById(scriptId).innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = scriptContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            alert('Script copied to clipboard!');
+        }
+
+        // Simulate the success and failure scenarios for testing
+        // Uncomment to simulate a successful payment:
+        // showScripts();
+
+        // Uncomment to simulate a failed payment:
+        // showError();
+    </script>
 </body>
 </html>
