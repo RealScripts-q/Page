@@ -68,7 +68,7 @@
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank" onclick="completeStep(1, 1)">Subscribe</a></p>
             <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank" onclick="startVideoTimer(1, 45)">Watch Video</a></p>
-            <p id="timer-text-1" class="timer-text">Please wait <span id="time-left-1">45</span> seconds...</p>
+            <p id="timer-text-1" class="timer-text">Please wait <span id="time-left-1">20</span> seconds...</p>
             <textarea id="script-content-1" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/main/Loader'))()</textarea>
             <button id="copy-button-1" onclick="copyScript(1)" style="display: none;">Copy Script</button>
         </div>
@@ -78,10 +78,39 @@
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank" onclick="completeStep(2, 1)">Subscribe</a></p>
             <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=VBSrpL5NVuI" target="_blank" onclick="startVideoTimer(2, 45)">Watch Video</a></p>
-            <p id="timer-text-2" class="timer-text">Please wait <span id="time-left-2">45</span> seconds...</p>
+            <p id="timer-text-2" class="timer-text">Please wait <span id="time-left-2">20</span> seconds...</p>
             <textarea id="script-content-2" readonly style="display: none;">loadstring(game:HttpGet('https://raw.githubusercontent.com/Just3itx/Lunor-Loadstrings/refs/main/Loader'))()</textarea>
             <button id="copy-button-2" onclick="copyScript(2)" style="display: none;">Copy Script</button>
         </div>
     </div>
+
+    <script>
+        function startVideoTimer(scriptNumber, duration) {
+            let timeLeft = duration;
+            let countdown = setInterval(() => {
+                alert("You must watch the video for 45 seconds!");
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById("timer-text-" + scriptNumber).style.display = "block";
+                    startCountdown(scriptNumber);
+                }
+            }, 1000);
+        }
+
+        function startCountdown(scriptNumber) {
+            let timeLeft = 20;
+            document.getElementById("time-left-" + scriptNumber).innerText = timeLeft;
+            let countdown = setInterval(() => {
+                timeLeft--;
+                document.getElementById("time-left-" + scriptNumber).innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById("script-content-" + scriptNumber).style.display = "block";
+                    document.getElementById("copy-button-" + scriptNumber).style.display = "block";
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
