@@ -51,7 +51,21 @@
         
         <div class="script-box" id="script1">
             <h3>Dead Rails Script Pastebin</h3>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+            <iframe id="video1" width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
+            <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
+        </div>
+        
+        <div class="script-box" id="script2">
+            <h3>Dead Rails Script Auto Collect Bonds</h3>
+            <iframe id="video2" width="100%" height="315" src="https://www.youtube.com/embed/VBSrpL5NVuI?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
+            <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
+        </div>
+        
+        <div class="script-box" id="script3">
+            <h3>Roblox Script Dead Rails | Leaf Hub</h3>
+            <iframe id="video3" width="100%" height="315" src="https://www.youtube.com/embed/FiX--8fb1Fw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
         </div>
@@ -61,33 +75,36 @@
     </div>
 
     <script>
-        let watchedTime = 0;
         let requiredTime = 45;
-        let videoReady = false;
-        
+        let videoReady = { video1: false, video2: false, video3: false };
+        let players = {};
+
         function onYouTubeIframeAPIReady() {
-            const player = new YT.Player(document.querySelector('iframe'), {
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
+            players.video1 = new YT.Player('video1', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video1') } });
+            players.video2 = new YT.Player('video2', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video2') } });
+            players.video3 = new YT.Player('video3', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video3') } });
         }
 
-        function onPlayerStateChange(event) {
+        function trackWatchTime(event, videoId) {
             if (event.data === YT.PlayerState.PLAYING) {
+                let watchedTime = 0;
                 let interval = setInterval(() => {
+                    if (players[videoId].getPlayerState() !== YT.PlayerState.PLAYING) {
+                        clearInterval(interval);
+                        return;
+                    }
                     watchedTime++;
                     if (watchedTime >= requiredTime) {
                         clearInterval(interval);
-                        videoReady = true;
+                        videoReady[videoId] = true;
                     }
                 }, 1000);
             }
         }
         
         document.getElementById('checkSteps').addEventListener('click', function() {
-            if (!videoReady) {
-                document.getElementById('error-message').innerText = "You must watch the video for 45 seconds.";
+            if (!videoReady.video1 || !videoReady.video2 || !videoReady.video3) {
+                document.getElementById('error-message').innerText = "You must watch all videos for 45 seconds.";
                 document.getElementById('error-message').style.display = "block";
             } else {
                 alert("You have completed all steps!");
