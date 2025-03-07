@@ -54,6 +54,8 @@
             <iframe id="video1" width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
+            <button id="checkSteps1" class="complete-steps" disabled>I have finished all steps</button>
+            <p id="error-message1" style="color: red; display: none;"></p>
         </div>
         
         <div class="script-box" id="script2">
@@ -61,6 +63,8 @@
             <iframe id="video2" width="100%" height="315" src="https://www.youtube.com/embed/VBSrpL5NVuI?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
+            <button id="checkSteps2" class="complete-steps" disabled>I have finished all steps</button>
+            <p id="error-message2" style="color: red; display: none;"></p>
         </div>
         
         <div class="script-box" id="script3">
@@ -68,15 +72,14 @@
             <iframe id="video3" width="100%" height="315" src="https://www.youtube.com/embed/FiX--8fb1Fw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
+            <button id="checkSteps3" class="complete-steps" disabled>I have finished all steps</button>
+            <p id="error-message3" style="color: red; display: none;"></p>
         </div>
-        
-        <button id="checkSteps" class="complete-steps">I have finished all steps</button>
-        <p id="error-message" style="color: red; display: none;"></p>
     </div>
 
     <script>
         let requiredTime = 45;
-        let videoReady = { video1: false, video2: false, video3: false };
+        let videoWatchTime = { video1: 0, video2: 0, video3: 0 };
         let players = {};
 
         function onYouTubeIframeAPIReady() {
@@ -87,28 +90,30 @@
 
         function trackWatchTime(event, videoId) {
             if (event.data === YT.PlayerState.PLAYING) {
-                let watchedTime = 0;
                 let interval = setInterval(() => {
                     if (players[videoId].getPlayerState() !== YT.PlayerState.PLAYING) {
                         clearInterval(interval);
                         return;
                     }
-                    watchedTime++;
-                    if (watchedTime >= requiredTime) {
+                    videoWatchTime[videoId]++;
+                    if (videoWatchTime[videoId] >= requiredTime) {
                         clearInterval(interval);
-                        videoReady[videoId] = true;
+                        document.getElementById(`checkSteps${videoId.replace('video', '')}`).disabled = false;
                     }
                 }, 1000);
             }
         }
         
-        document.getElementById('checkSteps').addEventListener('click', function() {
-            if (!videoReady.video1 || !videoReady.video2 || !videoReady.video3) {
-                document.getElementById('error-message').innerText = "You must watch all videos for 45 seconds.";
-                document.getElementById('error-message').style.display = "block";
-            } else {
-                alert("You have completed all steps!");
-            }
+        document.getElementById('checkSteps1').addEventListener('click', function() {
+            alert("You have completed all steps for Script 1!");
+        });
+        
+        document.getElementById('checkSteps2').addEventListener('click', function() {
+            alert("You have completed all steps for Script 2!");
+        });
+        
+        document.getElementById('checkSteps3').addEventListener('click', function() {
+            alert("You have completed all steps for Script 3!");
         });
     </script>
     
