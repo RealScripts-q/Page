@@ -23,99 +23,78 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             flex-grow: 1;
         }
-        .sidebar {
-            width: 250px;
-            background: #1e1e1e;
-            padding: 15px;
-            border-radius: 10px;
-            margin-right: 20px;
-            text-align: left;
-        }
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            background: #ff0000;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .sidebar a:hover {
-            background: #cc0000;
-        }
         .script-box {
-            background: #252525;
-            padding: 15px;
-            border-radius: 10px;
             margin-bottom: 20px;
+            padding: 15px;
+            background: #222;
+            border-radius: 10px;
         }
-        .button {
-            display: block;
+        .complete-steps {
             background: #ff0000;
             color: white;
-            text-decoration: none;
             padding: 10px;
+            border: none;
             border-radius: 5px;
-            text-align: center;
-            margin-top: 10px;
             cursor: pointer;
+            margin-top: 10px;
         }
-        .button:hover { background: #cc0000; }
-        .error { color: red; display: none; }
+        .complete-steps:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>My Executor I Use</h2>
-        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta</a>
-        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
-        <h2>Videos</h2>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/FiX--8fb1Fw" frameborder="0" allowfullscreen></iframe>
-    </div>
-    
     <div class="container">
         <h1>My Socials</h1>
         <h2>Scripts</h2>
         
-        <div class="script-box" id="script-1">
+        <div class="script-box" id="script1">
             <h3>Dead Rails Script Pastebin</h3>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="#" onclick="markStep(1, 1)">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="#" onclick="startTimer(1, 'MrNMO9UUwQo')">Watch Video Here</a></p>
-            <p class="error" id="error-1"></p>
-            <button class="button" onclick="checkSteps(1)">I Have Finished All Steps</button>
-            <textarea id="script-content-1" readonly style="display: none;">https://example.com/script1</textarea>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
+            <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
         </div>
+        
+        <button id="checkSteps" class="complete-steps">I have finished all steps</button>
+        <p id="error-message" style="color: red; display: none;"></p>
     </div>
 
     <script>
-        let completedSteps = {};
-
-        function markStep(scriptId, step) {
-            completedSteps[`${scriptId}-${step}`] = true;
+        let watchedTime = 0;
+        let requiredTime = 45;
+        let videoReady = false;
+        
+        function onYouTubeIframeAPIReady() {
+            const player = new YT.Player(document.querySelector('iframe'), {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
 
-        function startTimer(scriptId, videoId) {
-            markStep(scriptId, 2);
-            window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-        }
-
-        function checkSteps(scriptId) {
-            let totalSteps = 2;
-            let completed = Object.keys(completedSteps).filter(key => key.startsWith(`${scriptId}-`)).length;
-            let errorMsg = document.getElementById(`error-${scriptId}`);
-            
-            if (completed < totalSteps) {
-                errorMsg.innerText = `You still need to complete ${totalSteps - completed} step(s)!`;
-                errorMsg.style.display = "block";
-            } else {
-                errorMsg.style.display = "none";
-                document.getElementById(`script-content-${scriptId}`).style.display = "block";
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                let interval = setInterval(() => {
+                    watchedTime++;
+                    if (watchedTime >= requiredTime) {
+                        clearInterval(interval);
+                        videoReady = true;
+                    }
+                }, 1000);
             }
         }
+        
+        document.getElementById('checkSteps').addEventListener('click', function() {
+            if (!videoReady) {
+                document.getElementById('error-message').innerText = "You must watch the video for 45 seconds.";
+                document.getElementById('error-message').style.display = "block";
+            } else {
+                alert("You have completed all steps!");
+            }
+        });
     </script>
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
