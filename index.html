@@ -23,6 +23,27 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             flex-grow: 1;
         }
+        .sidebar {
+            width: 250px;
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-right: 20px;
+            text-align: left;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            background: #ff0000;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background: #cc0000;
+        }
         .script-box {
             margin-bottom: 20px;
             padding: 15px;
@@ -45,6 +66,18 @@
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>My Executor I Use</h2>
+        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta</a>
+        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
+        <h2>Videos</h2>
+        <iframe width="100%" height="150" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="150" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="150" src="https://www.youtube.com/embed/FiX--8fb1Fw" frameborder="0" allowfullscreen></iframe>
+        <h2>Skip Step</h2>
+        <a href="shop.html" target="_blank" class="support-button">Skip Step (Ad/Paypal)</a>
+    </div>
+    
     <div class="container">
         <h1>My Socials</h1>
         <h2>Scripts</h2>
@@ -55,7 +88,6 @@
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
             <button id="checkSteps1" class="complete-steps" disabled>I have finished all steps</button>
-            <p id="error-message1" style="color: red; display: none;"></p>
         </div>
         
         <div class="script-box" id="script2">
@@ -64,7 +96,6 @@
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
             <button id="checkSteps2" class="complete-steps" disabled>I have finished all steps</button>
-            <p id="error-message2" style="color: red; display: none;"></p>
         </div>
         
         <div class="script-box" id="script3">
@@ -73,49 +104,8 @@
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
             <button id="checkSteps3" class="complete-steps" disabled>I have finished all steps</button>
-            <p id="error-message3" style="color: red; display: none;"></p>
         </div>
     </div>
-
-    <script>
-        let requiredTime = 45;
-        let videoWatchTime = { video1: 0, video2: 0, video3: 0 };
-        let players = {};
-
-        function onYouTubeIframeAPIReady() {
-            players.video1 = new YT.Player('video1', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video1') } });
-            players.video2 = new YT.Player('video2', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video2') } });
-            players.video3 = new YT.Player('video3', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video3') } });
-        }
-
-        function trackWatchTime(event, videoId) {
-            if (event.data === YT.PlayerState.PLAYING) {
-                let interval = setInterval(() => {
-                    if (players[videoId].getPlayerState() !== YT.PlayerState.PLAYING) {
-                        clearInterval(interval);
-                        return;
-                    }
-                    videoWatchTime[videoId]++;
-                    if (videoWatchTime[videoId] >= requiredTime) {
-                        clearInterval(interval);
-                        document.getElementById(`checkSteps${videoId.replace('video', '')}`).disabled = false;
-                    }
-                }, 1000);
-            }
-        }
-        
-        document.getElementById('checkSteps1').addEventListener('click', function() {
-            alert("You have completed all steps for Script 1!");
-        });
-        
-        document.getElementById('checkSteps2').addEventListener('click', function() {
-            alert("You have completed all steps for Script 2!");
-        });
-        
-        document.getElementById('checkSteps3').addEventListener('click', function() {
-            alert("You have completed all steps for Script 3!");
-        });
-    </script>
     
     <script src="https://www.youtube.com/iframe_api"></script>
 </body>
