@@ -10,8 +10,6 @@
             font-family: Arial, sans-serif;
             background-color: #121212;
             color: white;
-            text-align: center;
-            padding: 20px;
             display: flex;
         }
         .container {
@@ -22,6 +20,18 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             flex-grow: 1;
+        }
+        .sidebar {
+            width: 200px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .sidebar img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
         .script-box {
             margin-bottom: 20px;
@@ -45,9 +55,16 @@
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <img src="https://www.f6s.com/content-resource/profiles/5769070_92ce91f9b533a5ff3b8f92135b50f4e790109d82_th1.jpg" alt="Delta Executor">
+        <a href="https://rkns.link/diin6" target="_blank">
+            <button class="complete-steps">Delta Executor</button>
+        </a>
+    </div>
+
     <div class="container">
         <h2>Scripts</h2>
-        
+
         <div class="script-box" id="script1">
             <h3>Dead Rails Script Pastebin</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
@@ -55,7 +72,7 @@
             <button id="checkSteps1" class="complete-steps">I have finished all steps</button>
             <p id="error-message1" style="color: red; display: none;"></p>
         </div>
-        
+
         <div class="script-box" id="script2">
             <h3>Dead Rails Script Auto Collect Bonds</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
@@ -63,7 +80,7 @@
             <button id="checkSteps2" class="complete-steps">I have finished all steps</button>
             <p id="error-message2" style="color: red; display: none;"></p>
         </div>
-        
+
         <div class="script-box" id="script3">
             <h3>Roblox Script Dead Rails | Leaf Hub</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
@@ -74,23 +91,17 @@
     </div>
 
     <script>
-        document.getElementById('checkSteps1').addEventListener('click', function() {
-            setTimeout(() => {
-                alert("Here is your link: https://pastebin.com/raw/6ddFtL8T");
-            }, 20000);
-        });
+        function checkSteps(buttonId, link) {
+            document.getElementById(buttonId).addEventListener('click', function () {
+                setTimeout(() => {
+                    alert(`Here is your link: ${link}`);
+                }, 20000);
+            });
+        }
 
-        document.getElementById('checkSteps2').addEventListener('click', function() {
-            setTimeout(() => {
-                alert("Here is your link: https://www.geekyblox.com/");
-            }, 20000);
-        });
-
-        document.getElementById('checkSteps3').addEventListener('click', function() {
-            setTimeout(() => {
-                alert("Here is your link: https://pastebin.com/raw/DxmjvX95");
-            }, 20000);
-        });
+        checkSteps('checkSteps1', 'https://pastebin.com/raw/6ddFtL8T');
+        checkSteps('checkSteps2', 'https://www.geekyblox.com/');
+        checkSteps('checkSteps3', 'https://pastebin.com/raw/DxmjvX95');
     </script>
 </body>
 </html>
