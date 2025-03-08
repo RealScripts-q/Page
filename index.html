@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Socials & Scripts</title>
@@ -49,22 +46,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>My Socials</h1>
         <h2>Scripts</h2>
         
         <div class="script-box" id="script1">
             <h3>Dead Rails Script Pastebin</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank">Watch Video Here</a></p>
-            <button id="checkSteps1" class="complete-steps" disabled>I have finished all steps</button>
+            <button id="checkSteps1" class="complete-steps">I have finished all steps</button>
             <p id="error-message1" style="color: red; display: none;"></p>
         </div>
         
         <div class="script-box" id="script2">
             <h3>Dead Rails Script Auto Collect Bonds</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=VBSrpL5NVuI" target="_blank">Watch Video Here</a></p>
-            <button id="checkSteps2" class="complete-steps" disabled>I have finished all steps</button>
+            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank">Watch Video Here</a></p>
+            <button id="checkSteps2" class="complete-steps">I have finished all steps</button>
             <p id="error-message2" style="color: red; display: none;"></p>
         </div>
         
@@ -72,160 +68,29 @@
             <h3>Roblox Script Dead Rails | Leaf Hub</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
             <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=FiX--8fb1Fw" target="_blank">Watch Video Here</a></p>
-            <button id="checkSteps3" class="complete-steps" disabled>I have finished all steps</button>
+            <button id="checkSteps3" class="complete-steps">I have finished all steps</button>
             <p id="error-message3" style="color: red; display: none;"></p>
         </div>
     </div>
 
     <script>
-        let requiredTime = 45;
-        let videoWatchTime = { video1: 0, video2: 0, video3: 0 };
-        let players = {};
-
-        function onYouTubeIframeAPIReady() {
-            players.video1 = new YT.Player('video1', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video1') } });
-            players.video2 = new YT.Player('video2', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video2') } });
-            players.video3 = new YT.Player('video3', { events: { 'onStateChange': (event) => trackWatchTime(event, 'video3') } });
-        }
-
-        function trackWatchTime(event, videoId) {
-            if (event.data === YT.PlayerState.PLAYING) {
-                let interval = setInterval(() => {
-                    if (players[videoId].getPlayerState() !== YT.PlayerState.PLAYING) {
-                        clearInterval(interval);
-                        return;
-                    }
-                    videoWatchTime[videoId]++;
-                    if (videoWatchTime[videoId] >= requiredTime) {
-                        clearInterval(interval);
-                        document.getElementById(`checkSteps${videoId.replace('video', '')}`).disabled = false;
-                    }
-                }, 1000);
-            }
-        }
-        
         document.getElementById('checkSteps1').addEventListener('click', function() {
-            alert("You have completed all steps for Script 1!");
+            setTimeout(() => {
+                alert("Here is your link: https://pastebin.com/raw/6ddFtL8T");
+            }, 20000);
         });
-        
+
         document.getElementById('checkSteps2').addEventListener('click', function() {
-            alert("You have completed all steps for Script 2!");
+            setTimeout(() => {
+                alert("Here is your link: https://www.geekyblox.com/");
+            }, 20000);
         });
-        
+
         document.getElementById('checkSteps3').addEventListener('click', function() {
-            alert("You have completed all steps for Script 3!");
+            setTimeout(() => {
+                alert("Here is your link: https://pastebin.com/raw/DxmjvX95");
+            }, 20000);
         });
     </script>
-    
-    <script src="https://www.youtube.com/iframe_api"></script>
-</body>
-</html>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Socials & Scripts</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            display: flex;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            flex-grow: 1;
-        }
-        .sidebar {
-            width: 250px;
-            background: #1e1e1e;
-            padding: 15px;
-            border-radius: 10px;
-            margin-right: 20px;
-            text-align: left;
-        }
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            background: #ff0000;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .sidebar a:hover {
-            background: #cc0000;
-        }
-        .script-box {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #222;
-            border-radius: 10px;
-        }
-        .complete-steps {
-            background: #ff0000;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .complete-steps:disabled {
-            background: gray;
-            cursor: not-allowed;
-        }
-    </style>
-</head>
-<body>
-    <div class="sidebar">
-        <h2>My Executor I Use</h2>
-        <a href="https://delta-executor.com/deltaexploit/" target="_blank">Delta</a>
-        <a href="https://rkns.link/pdivu" target="_blank" class="support-button">Delta with Support Me</a>
-        <h2>Videos</h2>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/MrNMO9UUwQo" frameborder="0" allowfullscreen></iframe>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/VBSrpL5NVuI" frameborder="0" allowfullscreen></iframe>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/FiX--8fb1Fw" frameborder="0" allowfullscreen></iframe>
-        <h2>Skip Step</h2>
-        <a href="shop.html" target="_blank" class="support-button">Skip Step (Ad/Paypal)</a>
-    </div>
-    
-    <div class="container">
-        <h1>My Socials</h1>
-        <h2>Scripts</h2>
-        
-        <div class="script-box" id="script1">
-            <h3>Dead Rails Script Pastebin</h3>
-            <iframe id="video1" width="100%" height="315" src="https://www.youtube.com/embed/MrNMO9UUwQo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
-            <button id="checkSteps1" class="complete-steps" disabled>I have finished all steps</button>
-        </div>
-        
-        <div class="script-box" id="script2">
-            <h3>Dead Rails Script Auto Collect Bonds</h3>
-            <iframe id="video2" width="100%" height="315" src="https://www.youtube.com/embed/VBSrpL5NVuI?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
-            <button id="checkSteps2" class="complete-steps" disabled>I have finished all steps</button>
-        </div>
-        
-        <div class="script-box" id="script3">
-            <h3>Roblox Script Dead Rails | Leaf Hub</h3>
-            <iframe id="video3" width="100%" height="315" src="https://www.youtube.com/embed/FiX--8fb1Fw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
-            <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> Watch Video (45 sec)</p>
-            <button id="checkSteps3" class="complete-steps" disabled>I have finished all steps</button>
-        </div>
-    </div>
-    
-    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
