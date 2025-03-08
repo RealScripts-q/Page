@@ -51,7 +51,7 @@
         <div class="script-box" id="script1">
             <h3>Dead Rails Script Pastebin</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank">Watch Video Here</a></p>
+            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank" onclick="startTimer(1, 45)">Watch Video Here</a></p>
             <button id="checkSteps1" class="complete-steps">I have finished all steps</button>
             <p id="error-message1" style="color: red; display: none;"></p>
         </div>
@@ -59,7 +59,7 @@
         <div class="script-box" id="script2">
             <h3>Dead Rails Script Auto Collect Bonds</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank">Watch Video Here</a></p>
+            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=MrNMO9UUwQo" target="_blank" onclick="startTimer(2, 45)">Watch Video Here</a></p>
             <button id="checkSteps2" class="complete-steps">I have finished all steps</button>
             <p id="error-message2" style="color: red; display: none;"></p>
         </div>
@@ -67,29 +67,44 @@
         <div class="script-box" id="script3">
             <h3>Roblox Script Dead Rails | Leaf Hub</h3>
             <p><strong>Step 1:</strong> <a href="https://www.youtube.com/@RealScripts_q" target="_blank">Subscribe</a></p>
-            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=FiX--8fb1Fw" target="_blank">Watch Video Here</a></p>
+            <p><strong>Step 2:</strong> <a href="https://www.youtube.com/watch?v=FiX--8fb1Fw" target="_blank" onclick="startTimer(3, 45)">Watch Video Here</a></p>
             <button id="checkSteps3" class="complete-steps">I have finished all steps</button>
             <p id="error-message3" style="color: red; display: none;"></p>
         </div>
     </div>
 
     <script>
+        const timers = {};
+
+        function startTimer(id, seconds) {
+            timers[id] = seconds;
+        }
+
+        function checkTimer(id, link) {
+            if (!timers[id]) {
+                document.getElementById(`error-message${id}`).innerText = "You must watch the video for 45 seconds.";
+                document.getElementById(`error-message${id}`).style.display = "block";
+                return;
+            }
+
+            if (timers[id] > 0) {
+                document.getElementById(`error-message${id}`).innerText = `You need to watch the video for ${timers[id]} seconds more.`;
+                document.getElementById(`error-message${id}`).style.display = "block";
+            } else {
+                alert(`Here is your link: ${link}`);
+            }
+        }
+
         document.getElementById('checkSteps1').addEventListener('click', function() {
-            setTimeout(() => {
-                alert("Here is your link: https://pastebin.com/raw/6ddFtL8T");
-            }, 20000);
+            checkTimer(1, "https://pastebin.com/raw/6ddFtL8T");
         });
 
         document.getElementById('checkSteps2').addEventListener('click', function() {
-            setTimeout(() => {
-                alert("Here is your link: https://www.geekyblox.com/");
-            }, 20000);
+            checkTimer(2, "https://www.geekyblox.com/");
         });
 
         document.getElementById('checkSteps3').addEventListener('click', function() {
-            setTimeout(() => {
-                alert("Here is your link: https://pastebin.com/raw/DxmjvX95");
-            }, 20000);
+            checkTimer(3, "https://pastebin.com/raw/DxmjvX95");
         });
     </script>
 </body>
