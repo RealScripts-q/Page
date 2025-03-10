@@ -6,39 +6,64 @@
     <title>Shop</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #121212;
             color: white;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
-            margin: 0;
+            flex-direction: column;
         }
         .shop-container {
             background: #1e1e1e;
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
         }
         .shop-item {
             background: #222;
-            padding: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .shop-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        .shop-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
-            position: relative;
         }
         .label {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 10px;
+            right: 10px;
             background: #ff0000;
             color: white;
-            padding: 3px 7px;
+            padding: 5px 10px;
             border-radius: 5px;
             font-weight: bold;
+            font-size: 0.9rem;
         }
         .popular {
             background: #ffa500;
@@ -52,52 +77,102 @@
         .best-buy {
             background: #f39c12;
         }
+        h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 1rem;
+            margin: 10px 0;
+            color: #ccc;
+        }
+        button {
+            background-color: #0070ba;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        button:hover {
+            background-color: #005f8b;
+        }
+        .category-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .shop-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-around;
+        }
     </style>
 </head>
 <body>
     <div class="shop-container">
         <h2>Shop</h2>
+        
+        <div class="category-title">Best Sellers</div>
+        <div class="shop-row">
+            <div class="shop-item">
+                <span class="label best-selling">Best Selling</span>
+                <img src="https://via.placeholder.com/350x150" alt="Product Image">
+                <h3>Skip Ad - $12.99</h3>
+                <p>Original Price: $22.00 (40% Off)</p>
+                <button>Buy Now</button>
+            </div>
 
-        <div class="shop-item">
-            <span class="label best-selling">Best Selling</span>
-            <h3>Skip Ad - $12.99</h3>
-            <p>Original Price: $22.00 (40% Off)</p>
-            <button>Buy Now</button>
+            <div class="shop-item">
+                <span class="label popular">Popular</span>
+                <img src="https://via.placeholder.com/350x150" alt="Product Image">
+                <h3>Special Script Pack - $9.99</h3>
+                <p>Includes exclusive scripts with regular updates.</p>
+                <button>Buy Now</button>
+            </div>
         </div>
 
-        <div class="shop-item">
-            <span class="label popular">Popular</span>
-            <h3>Special Script Pack - $9.99</h3>
-            <p>Includes exclusive scripts with regular updates.</p>
-            <button>Buy Now</button>
+        <div class="category-title">Newest Items</div>
+        <div class="shop-row">
+            <div class="shop-item">
+                <span class="label newest">Newest</span>
+                <img src="https://via.placeholder.com/350x150" alt="Product Image">
+                <h3>Exclusive Premium Script - $19.99</h3>
+                <p>Get access to the latest premium scripts.</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="shop-item">
+                <span class="label best-buy">Best Buy</span>
+                <img src="https://via.placeholder.com/350x150" alt="Product Image">
+                <h3>Ultimate Script Pack - $29.99</h3>
+                <p>Includes all premium scripts with lifetime updates.</p>
+                <button>Buy Now</button>
+            </div>
         </div>
 
-        <div class="shop-item">
-            <span class="label newest">Newest</span>
-            <h3>Exclusive Premium Script - $19.99</h3>
-            <p>Get access to the latest premium scripts.</p>
-            <button>Buy Now</button>
-        </div>
+        <div class="category-title">Other Items</div>
+        <div class="shop-row">
+            <div class="shop-item">
+                <img src="https://via.placeholder.com/350x150" alt="Product Image">
+                <h3>Basic Script Pack - $4.99</h3>
+                <p>Access to essential scripts for popular games.</p>
+                <button>Buy Now</button>
+            </div>
 
-        <div class="shop-item">
-            <span class="label best-buy">Best Buy</span>
-            <h3>Ultimate Script Pack - $29.99</h3>
-            <p>Includes all premium scripts with lifetime updates.</p>
-            <button>Buy Now</button>
-        </div>
-
-        <div class="shop-item">
-            <h3>Basic Script Pack - $4.99</h3>
-            <p>Access to essential scripts for popular games.</p>
-            <button>Buy Now</button>
-        </div>
-
-        <div class="shop-item">
-            <h3>Premium Key for MM2, Dead Rails, and Adopt Me</h3>
-            <p>Available via Robux payment.</p>
-            <a href="https://www.roblox.com/game-pass/1097309544/Premuim-key-for-mm2-dead-rails-and-adopt-me" target="_blank">
-                <button>Buy with Robux</button>
-            </a>
+            <div class="shop-item">
+                <img src="https://via.placeholder.com/350x150" alt="Product Image">
+                <h3>Premium Key for MM2, Dead Rails, and Adopt Me</h3>
+                <p>Available via Robux payment.</p>
+                <a href="https://www.roblox.com/game-pass/1097309544/Premuim-key-for-mm2-dead-rails-and-adopt-me" target="_blank">
+                    <button>Buy with Robux</button>
+                </a>
+            </div>
         </div>
     </div>
 </body>
