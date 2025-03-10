@@ -47,13 +47,6 @@
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
-        .shop-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
         .label {
             position: absolute;
             top: 10px;
@@ -122,18 +115,30 @@
         <div class="shop-row">
             <div class="shop-item">
                 <span class="label best-selling">Best Selling</span>
-                <img src="https://via.placeholder.com/350x150" alt="Product Image">
                 <h3>Skip Ad - $12.99</h3>
                 <p>Original Price: $22.00 (40% Off)</p>
-                <button>Buy Now</button>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="your-paypal-email@example.com">
+                    <input type="hidden" name="item_name" value="Skip Ad">
+                    <input type="hidden" name="amount" value="12.99">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit">Buy Now</button>
+                </form>
             </div>
 
             <div class="shop-item">
                 <span class="label popular">Popular</span>
-                <img src="https://via.placeholder.com/350x150" alt="Product Image">
                 <h3>Special Script Pack - $9.99</h3>
                 <p>Includes exclusive scripts with regular updates.</p>
-                <button>Buy Now</button>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="your-paypal-email@example.com">
+                    <input type="hidden" name="item_name" value="Special Script Pack">
+                    <input type="hidden" name="amount" value="9.99">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit">Buy Now</button>
+                </form>
             </div>
         </div>
 
@@ -141,38 +146,68 @@
         <div class="shop-row">
             <div class="shop-item">
                 <span class="label newest">Newest</span>
-                <img src="https://via.placeholder.com/350x150" alt="Product Image">
                 <h3>Exclusive Premium Script - $19.99</h3>
                 <p>Get access to the latest premium scripts.</p>
-                <button>Buy Now</button>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="your-paypal-email@example.com">
+                    <input type="hidden" name="item_name" value="Exclusive Premium Script">
+                    <input type="hidden" name="amount" value="19.99">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit">Buy Now</button>
+                </form>
             </div>
 
             <div class="shop-item">
                 <span class="label best-buy">Best Buy</span>
-                <img src="https://via.placeholder.com/350x150" alt="Product Image">
                 <h3>Ultimate Script Pack - $29.99</h3>
                 <p>Includes all premium scripts with lifetime updates.</p>
-                <button>Buy Now</button>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="your-paypal-email@example.com">
+                    <input type="hidden" name="item_name" value="Ultimate Script Pack">
+                    <input type="hidden" name="amount" value="29.99">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit">Buy Now</button>
+                </form>
             </div>
         </div>
 
         <div class="category-title">Other Items</div>
         <div class="shop-row">
             <div class="shop-item">
-                <img src="https://via.placeholder.com/350x150" alt="Product Image">
-                <h3>Basic Script Pack - $4.99</h3>
-                <p>Access to essential scripts for popular games.</p>
-                <button>Buy Now</button>
+                <h3>Starter Script Pack - $4.99</h3>
+                <p>Access to essential scripts for Roblox games.</p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="your-paypal-email@example.com">
+                    <input type="hidden" name="item_name" value="Starter Script Pack">
+                    <input type="hidden" name="amount" value="4.99">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit">Buy Now</button>
+                </form>
             </div>
 
             <div class="shop-item">
-                <img src="https://via.placeholder.com/350x150" alt="Product Image">
-                <h3>Premium Key for MM2, Dead Rails, and Adopt Me</h3>
-                <p>Available via Robux payment.</p>
-                <a href="https://www.roblox.com/game-pass/1097309544/Premuim-key-for-mm2-dead-rails-and-adopt-me" target="_blank">
-                    <button>Buy with Robux</button>
-                </a>
+                <h3>Premium Script Pack - $19.99</h3>
+                <p>Includes premium scripts for exclusive Roblox games.</p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="your-paypal-email@example.com">
+                    <input type="hidden" name="item_name" value="Premium Script Pack">
+                    <input type="hidden" name="amount" value="19.99">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit">Buy Now</button>
+                </form>
             </div>
+        </div>
+
+        <div class="shop-item">
+            <h3>Premium Key for MM2, Dead Rails, and Adopt Me</h3>
+            <p>Available via Robux payment.</p>
+            <a href="https://www.roblox.com/game-pass/1097309544/Premuim-key-for-mm2-dead-rails-and-adopt-me" target="_blank">
+                <button>Buy with Robux</button>
+            </a>
         </div>
     </div>
 </body>
