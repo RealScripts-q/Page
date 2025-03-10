@@ -3,61 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Skip Ad</title>
+    <title>Shop</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #121212;
             color: white;
             display: flex;
-            height: 100vh;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            height: 100vh;
+            margin: 0;
         }
-        .container {
+        .shop-container {
             background: #1e1e1e;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
-        .price {
-            text-decoration: line-through;
-            color: gray;
+        .shop-item {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
         }
-        .discount-price {
-            color: #4CAF50;
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-        .paypal-button {
-            background-color: #0070ba;
+        .label {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff0000;
             color: white;
-            border: none;
-            padding: 10px 20px;
+            padding: 3px 7px;
             border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
+            font-weight: bold;
         }
-        .paypal-button:hover {
-            background-color: #005ea6;
+        .popular {
+            background: #ffa500;
+        }
+        .best-selling {
+            background: #0070ba;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Skip Ads - Instant Access</h1>
-        <p class="price">$22.00</p>
-        <p class="discount-price">Now Only $12.99 (40% Off!)</p>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="realgyjs@gmail.com">
-            <input type="hidden" name="item_name" value="Skip Ad Access">
-            <input type="hidden" name="amount" value="12.99">
-            <input type="hidden" name="currency_code" value="USD">
-            <input type="hidden" name="return" value="purchasecomplete.html">
-            <button class="paypal-button" type="submit">Buy Now with PayPal</button>
-        </form>
+    <div class="shop-container">
+        <h2>Shop</h2>
+
+        <div class="shop-item">
+            <span class="label best-selling">Best Selling</span>
+            <h3>Skip Ad - $12.99</h3>
+            <p>Original Price: $22.00 (40% Off)</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="shop-item">
+            <span class="label popular">Popular</span>
+            <h3>Special Script Pack - $9.99</h3>
+            <p>Includes exclusive scripts with regular updates.</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="shop-item">
+            <h3>Basic Script Pack - $4.99</h3>
+            <p>Access to essential scripts for popular games.</p>
+            <button>Buy Now</button>
+        </div>
     </div>
 </body>
 </html>
