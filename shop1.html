@@ -5,22 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Skip Ad</title>
     <style>
-        body { font-family: Arial, sans-serif; display: flex; height: 100vh; justify-content: center; align-items: center; background-color: #f0f2f5; margin: 0; }
-        .shop-container { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); text-align: center; }
-        .price { font-size: 24px; color: #28a745; margin: 10px 0; }
-        .original-price { text-decoration: line-through; color: #888; font-size: 18px; }
-        .sale-badge { background-color: #ff4757; color: #fff; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
-        .buy-btn { background-color: #0070ba; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 18px; text-decoration: none; }
-        .buy-btn:hover { background-color: #005a9e; }
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .price {
+            text-decoration: line-through;
+            color: #ff4c4c;
+        }
+        .discounted-price {
+            color: #4caf50;
+            font-size: 1.5em;
+        }
+        .paypal-btn {
+            background-color: #0070ba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
-    <div class="shop-container">
-        <h1>Skip Ad - Instant Access</h1>
-        <div class="sale-badge">40% OFF</div>
-        <p class="original-price">Was: $22</p>
-        <p class="price">Now: $12.99</p>
-        <a class="buy-btn" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=realgyjs@gmail.com&item_name=Skip%20Ad%20Access&amount=12.99&currency_code=USD">Buy Now with PayPal</a>
+    <div class="container">
+        <h2>Skip Ad Purchase</h2>
+        <p class="price">$22</p>
+        <p class="discounted-price">Now $12.99</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="handlePurchase()">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="realgyjs@gmail.com">
+            <input type="hidden" name="item_name" value="Skip Ad">
+            <input type="hidden" name="amount" value="12.99">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="return" value="index.html?skipAd=true">
+            <button type="submit" class="paypal-btn">Buy Now with PayPal</button>
+        </form>
     </div>
+
+    <script>
+        function handlePurchase() {
+            localStorage.setItem('skipAd', 'true');
+        }
+    </script>
 </body>
 </html>
