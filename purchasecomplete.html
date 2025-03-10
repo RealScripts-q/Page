@@ -39,6 +39,9 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        #copyButton {
+            background-color: #FF9800;
+        }
     </style>
 </head>
 <body>
@@ -52,37 +55,99 @@
         </ul>
 
         <h2>Your Secret Key:</h2>
-        <pre id="generatedKey"></pre>
+        <!-- Display the secret key here -->
+        <pre id="generatedKey">PLS_S_U_B_S_C_R_I_B_E</pre>
+
         <h3>Enter your Roblox username (required):</h3>
         <input type="text" id="usernameInput" placeholder="Your Roblox Username">
         <button onclick="saveKey()">Submit</button>
 
         <h2>Example Lua Starter Code:</h2>
-        <pre>
+        <pre id="luaCode">
+local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
-Players.PlayerAdded:Connect(function(player)
-    local leaderstats = Instance.new("Folder")
-    leaderstats.Name = "leaderstats"
-    leaderstats.Parent = player
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
 
-    local points = Instance.new("IntValue")
-    points.Name = "Points"
-    points.Value = 0
-    points.Parent = leaderstats
+-- Main Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0.3, 0, 0.4, 0)
+mainFrame.Position = UDim2.new(0.35, 0, 0.3, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = screenGui
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0.2, 0)
+title.Text = "Enter Secret Key"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+title.Parent = mainFrame
+
+-- TextBox for Secret Key
+local keyInput = Instance.new("TextBox")
+keyInput.Size = UDim2.new(0.8, 0, 0.2, 0)
+keyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
+keyInput.PlaceholderText = "Enter your secret key"
+keyInput.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+keyInput.TextColor3 = Color3.fromRGB(0, 255, 0)
+keyInput.Parent = mainFrame
+
+-- Submit Button
+local submitButton = Instance.new("TextButton")
+submitButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+submitButton.Position = UDim2.new(0.25, 0, 0.55, 0)
+submitButton.Text = "Submit"
+submitButton.BackgroundColor3 = Color3.fromRGB(76, 175, 80)
+submitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+submitButton.Parent = mainFrame
+
+-- Hidden GUI (loads upon correct key)
+local hiddenGui = Instance.new("TextLabel")
+hiddenGui.Size = UDim2.new(1, 0, 0.2, 0)
+hiddenGui.Position = UDim2.new(0, 0, 0.8, 0)
+hiddenGui.Text = "Secret GUI Loaded!"
+hiddenGui.BackgroundColor3 = Color3.fromRGB(0, 122, 204)
+hiddenGui.TextColor3 = Color3.fromRGB(255, 255, 255)
+hiddenGui.Visible = false -- Initially hidden
+hiddenGui.Parent = mainFrame
+
+-- Secret key for validation
+local validKey = "PLS_S_U_B_S_C_R_I_B_E"
+
+local function verifyKey(inputKey)
+    if inputKey == validKey then
+        hiddenGui.Visible = true
+        hiddenGui.Text = "Success! GUI Unlocked."
+        hiddenGui.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    else
+        hiddenGui.Visible = true
+        hiddenGui.Text = "Incorrect key. Try again."
+        hiddenGui.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    end
+end
+
+submitButton.MouseButton1Click:Connect(function()
+    local inputKey = keyInput.Text
+    if inputKey and inputKey ~= "" then
+        verifyKey(inputKey)
+    else
+        hiddenGui.Visible = true
+        hiddenGui.Text = "Please enter a key."
+        hiddenGui.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    end
 end)
         </pre>
+        <button id="copyButton" onclick="copyLuaCode()">Copy Lua Code to Clipboard</button>
     </div>
 
     <script>
-        let secretKey = '';
-        function generateKey() {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (let i = 0; i < 16; i++) {
-                secretKey += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            document.getElementById('generatedKey').innerText = secretKey;
-        }
+        let secretKey = "PLS_S_U_B_S_C_R_I_B_E";  // Predefined secret key
 
         function saveKey() {
             const username = document.getElementById('usernameInput').value;
@@ -93,7 +158,14 @@ end)
             alert(`Your key: ${secretKey}\nUsername: ${username}\nKeep this information safe and do not share it!`);
         }
 
-        window.onload = generateKey;
+        function copyLuaCode() {
+            const luaCode = document.getElementById('luaCode').innerText;
+            navigator.clipboard.writeText(luaCode).then(() => {
+                alert("Lua code copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy code: " + err);
+            });
+        }
     </script>
 </body>
 </html>
